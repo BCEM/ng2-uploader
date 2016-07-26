@@ -1,16 +1,16 @@
-import {Directive, ElementRef, EventEmitter} from '@angular/core';
-import {Ng2Uploader} from '../services/ng2-uploader';
+import {Directive, ElementRef, EventEmitter} from "@angular/core";
+import {Ng2Uploader} from "../services/ng2-uploader";
 
 @Directive({
-  selector: '[ng-file-drop]',
-  inputs: ['options: ng-file-drop'],
-  outputs: ['onUpload'],
-  host: { '(change)': 'onFiles()' }
+  selector: "[ng-file-drop]",
+  inputs: ["options: ng-file-drop"],
+  outputs: ["onUpload"],
+  host: { "(change)": "onFiles()" }
 })
 export class NgFileDrop {
-  uploader: Ng2Uploader;
-  options: any;
-  onUpload: EventEmitter<any> = new EventEmitter();
+  private uploader: Ng2Uploader;
+  private options: any;
+  private onUpload: EventEmitter<any> = new EventEmitter();
 
   constructor(public el: ElementRef) {
     this.uploader = new Ng2Uploader();
@@ -25,8 +25,8 @@ export class NgFileDrop {
     this.initEvents();
   }
 
-  initEvents(): void {
-    this.el.nativeElement.addEventListener('drop', (e) => {
+  private initEvents(): void {
+    this.el.nativeElement.addEventListener("drop", (e) => {
       e.stopPropagation();
       e.preventDefault();
 
@@ -37,13 +37,13 @@ export class NgFileDrop {
         this.uploader.addFilesToQueue(files);
       }
     }, false);
-    
-    this.el.nativeElement.addEventListener('dragenter', (e) => {
+
+    this.el.nativeElement.addEventListener("dragenter", (e) => {
       e.stopPropagation();
       e.preventDefault();
     }, false);
-    
-    this.el.nativeElement.addEventListener('dragover', (e) => {
+
+    this.el.nativeElement.addEventListener("dragover", (e) => {
       e.stopPropagation();
       e.preventDefault();
     }, false);

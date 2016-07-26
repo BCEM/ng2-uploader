@@ -1,16 +1,16 @@
-import {Directive, ElementRef, EventEmitter} from '@angular/core';
-import {Ng2Uploader} from '../services/ng2-uploader';
+import {Directive, ElementRef, EventEmitter} from "@angular/core";
+import {Ng2Uploader} from "../services/ng2-uploader";
 
 @Directive({
-  selector: '[ng-file-select]',
-  inputs: ['options: ng-file-select'],
-  outputs: ['onUpload'],
-  host: { '(change)': 'onFiles()' }
+  selector: "[ng-file-select]",
+  inputs: ["options: ng-file-select"],
+  outputs: ["onUpload"],
+  host: { "(change)": "onFiles()" }
 })
 export class NgFileSelect {
-  uploader: Ng2Uploader;
-  options: any;
-  onUpload: EventEmitter<any> = new EventEmitter();
+  public uploader: Ng2Uploader;
+  public options: any;
+  public onUpload: EventEmitter<any> = new EventEmitter();
 
   constructor(public el: ElementRef) {
     this.uploader = new Ng2Uploader();
@@ -23,7 +23,7 @@ export class NgFileSelect {
     });
   }
 
-  onFiles(): void {
+  public onFiles(): void {
     let files = this.el.nativeElement.files;
     if (files.length) {
       this.uploader.addFilesToQueue(files);
